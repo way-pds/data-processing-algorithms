@@ -240,7 +240,7 @@ Possible extensions for this project:
 
 ## Author
 
-Your Name
+Wayne Pereira da Silva
 
 Mathematics & Computational Science — UNICAMP
 Data Science and Data Engineering projects
