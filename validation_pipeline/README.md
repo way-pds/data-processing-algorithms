@@ -1,44 +1,30 @@
 # Dataset Validation Pipeline
 
-This project implements a Python pipeline for validating and analyzing data collection files from research experiments.
+> Module: `src/dpa/pipeline.py` · CLI: `dpa-pipeline`
 
-The pipeline automatically scans folders, extracts metadata from file names, validates file structures, computes statistics, and generates an Excel report.
-
-## Features
-
-- Recursive search for CSV files
-- Metadata extraction from file names
-- Dataset validation
-- Statistical analysis of collections
-- Automatic Excel report generation
-- Visualization of statistics
-
-## Technologies
-
-- Python
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
+End-to-end data processing pipeline: metadata extraction, statistics, and visualization.
 
 ## Pipeline Steps
 
-1. Scan folders for dataset files
+1. Scan folder for CSV files
 2. Extract metadata from filenames
-3. Compute dataset statistics
-4. Generate analytical tables
-5. Export reports to Excel
-6. Create visualizations
+3. Compute per-device and per-participant statistics
+4. Generate summary charts (matplotlib)
+5. Export Excel report
 
-## Example Output
+## Usage
 
-The script generates an Excel file containing:
+```bash
+dpa-pipeline path/to/data -o report.xlsx -c summary.png -v
 
-- Base dataset metadata
-- Device metrics
-- Participant metrics
-- Collection statistics per date
+# Skip chart generation
+dpa-pipeline path/to/data --no-visualization
+```
 
-## Author
+## Programmatic
 
-Wayne Pereira da Silva
+```python
+from dpa.pipeline import run_pipeline
+
+report = run_pipeline("data/", output_file="report.xlsx", chart_file="chart.png")
+```

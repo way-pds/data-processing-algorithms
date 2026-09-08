@@ -1,41 +1,26 @@
 # Dataset Metadata Extractor
 
-This project implements a Python script to automatically extract metadata from structured dataset file names.
+> Module: `src/dpa/metadata_extractor.py` · CLI: `dpa-metadata-extractor`
 
-The script scans directories containing CSV files, extracts structured information from filenames, and generates a metadata table.
+Extracts structured metadata from dataset filenames.
 
 ## Features
 
-- Automatic dataset discovery
-- Metadata extraction from filenames
-- File size calculation
-- Row count for CSV files
-- Export to Excel report
+- Automatic CSV dataset discovery
+- Metadata extraction from filenames (research, participant, device, category, side, dominance, moment, date)
+- File size and row count
+- Export to Excel or CSV
 
-## Technologies
+## Usage
 
-- Python
-- Pandas
-- NumPy
-- Pathlib
+```bash
+dpa-metadata-extractor path/to/data -o metadata.xlsx -f excel -v
+```
 
-## Metadata Extracted
+## Programmatic
 
-- research
-- participant
-- device
-- category
-- side
-- dominance
-- moment
-- date
-- file size
-- row count
+```python
+from dpa.metadata_extractor import run_extractor
 
-## Output
-
-The script produces an Excel file summarizing all dataset metadata.
-
-## Author
-
-Wayne Pereira da Silva
+df = run_extractor("data/", output="metadata.xlsx")
+```

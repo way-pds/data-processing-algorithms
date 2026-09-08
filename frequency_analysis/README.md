@@ -1,23 +1,47 @@
 # Sampling Frequency Analyzer
 
-This script analyzes the sampling frequency of sensor datasets stored in CSV files.
+> Module: `src/dpa/frequency.py` · CLI: `dpa-frequency`
 
-It scans folders recursively, identifies sensor devices, and computes statistics such as mean and standard deviation of sampling frequency.
+Analyzes the sampling frequency of sensor datasets stored in CSV files.
 
 ## Features
 
-- Recursive dataset discovery
-- Metadata extraction from file names
-- Automatic sensor recognition
-- Sampling frequency analysis
-- Statistical summaries
-
-## Requirements
-
-- Python 3.9+
-- pandas
+- Recursive dataset discovery with configurable device definitions
+- Metadata extraction from structured filenames
+- Sampling frequency statistics (mean, std, Hz)
+- External YAML configuration for device timestamps and units
+- Excel report export
 
 ## Usage
 
 ```bash
-python sampling_frequency_analyzer.py
+# Default (scans ./data)
+dpa-frequency
+
+# Custom folder + config
+dpa-frequency path/to/data --config config/devices.yaml -o report.xlsx -v
+```
+
+## Configuration
+
+Device-to-timestamp mappings are defined in `config/devices.yaml`:
+
+```yaml
+devices:
+  VivaSensing:
+    timestamp: "Timestamp"
+    unit: "ms"
+  TANITA:
+    timestamp: "time"
+    unit: null          # auto-detect unit
+```
+
+## Programmatic
+
+```python
+from dpa.frequency import analyze_dataset
+from dpa.core.config import load_config
+
+cfg = load_config("config/devices.yaml")
+report = analyze_dataset("data/", config=cfg["devices"])
+```

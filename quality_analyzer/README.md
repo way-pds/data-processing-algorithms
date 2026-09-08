@@ -1,38 +1,26 @@
 # Dataset Quality Analyzer
 
-This project implements an automated data quality analysis pipeline for structured datasets.
+> Module: `src/dpa/quality.py` · CLI: `dpa-quality`
 
-The algorithm analyzes CSV files and generates metrics that help identify potential data issues.
+Performs automated data quality analysis on CSV datasets.
 
-## Data Quality Checks
+## Quality Checks
 
-The script performs:
+- Missing value ratio per column
+- Duplicate row detection
+- Constant (zero-variance) column detection
+- Severity classification (high / medium / low)
 
-- Missing value analysis
-- Variance calculation
-- Unique value count
-- Dataset consistency checks
-- Column validation
-- Dataset categorization
-
-## Features
-
-- Automated dataset scanning
-- Statistical analysis of datasets
-- Detection of abnormal files
-- Generation of analytical reports
-- Export to Excel
-
-## Output
-
-The algorithm produces an Excel report containing:
-
-- dataset metadata
-- column statistics
-- dataset distribution
-- detected errors
-
-## Example
+## Usage
 
 ```bash
-python data_quality_analysis.py --folder path/to/data
+dpa-quality path/to/data -o quality_report.xlsx -v
+```
+
+## Programmatic
+
+```python
+from dpa.quality import run_quality_analysis
+
+report_df, summary_df = run_quality_analysis("data/")
+```

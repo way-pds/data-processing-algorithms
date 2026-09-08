@@ -1,12 +1,33 @@
 # Python cache
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
 
 # Virtual environments
 venv/
 .env/
+.venv/
+
+# Build / distribution artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Test / coverage artifacts
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Editors
+.idea/
+*.swp
+
+# Reports and generated outputs
+*.xlsx
+output/
 
 # Jupyter
 .ipynb_checkpoints/

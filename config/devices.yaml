@@ -1,0 +1,54 @@
+# External configuration for the dpa tools.
+#
+# This file demonstrates how to override the built-in defaults. Any subset of
+# the keys below can be provided; values are deep-merged over the package
+# defaults. See `src/dpa/core/config.py` for the default configuration tree.
+
+# Sampling frequency analyzer: sensor device -> timestamp column + unit.
+devices:
+  VivaSensing:
+    timestamp: "Timestamp"
+    unit: "ms"
+  COLA:
+    timestamp: "Timestamp_Sensor(us)"
+    unit: "us"
+  BIA:
+    timestamp: "TimeStamp"
+    unit: "ms"
+  TANITA:
+    timestamp: "time"
+    unit: null
+  psgSleepStaging:
+    timestamp: "Timestamp_ms"
+    unit: "ms"
+
+# Sensor Data Counter: sensor name -> columns to count as valid points.
+sensor_columns:
+  accelerometer: ["Acc_X", "Acc_Y", "Acc_Z"]
+  gyroscope: ["Gyr_X", "Gyr_Y", "Gyr_Z"]
+  magnetometer: ["Mag_X", "Mag_Y", "Mag_Z"]
+  heart_rate: ["HR"]
+
+# Sensor Dataset Validator: expected file counts per sensor.
+expected_files:
+  accelerometer: 1
+  ppg: 1
+  bia: 2
+  ecg: 2
+
+# Sensor Dataset Validator: minimum expected line counts per sensor.
+expected_lines:
+  accelerometer: 42000
+  bia: 150
+  ecg: 1500
+  ppg: 85000
+
+# Schema Validator: device token (from the file name) -> expected columns.
+# A value may be a flat list of columns or a mapping of subtype -> columns.
+schemas:
+  deviceA:
+    type1: ["col1", "col2", "col3"]
+  deviceB:
+    type2: ["sensor1", "sensor2"]
+  deviceC:
+    type3: ["value", "timestamp"]

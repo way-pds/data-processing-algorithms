@@ -1,0 +1,94 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dpa"
+version = "0.1.0"
+description = "Data Processing Algorithms - tools for dataset validation, metadata extraction, and data quality analysis."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Wayne Pereira da Silva", email = "wayne.pereira@example.com" }]
+keywords = ["data-engineering", "data-quality", "validation", "metadata", "pandas", "sensors"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "pandas>=1.5",
+    "numpy>=1.23",
+    "PyYAML>=6.0",
+    "tqdm>=4.60",
+    "openpyxl>=3.0",
+]
+
+[project.optional-dependencies]
+viz = ["matplotlib>=3.6", "plotly>=5.0"]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.4",
+    "mypy>=1.8",
+    "pandas-stubs>=2.0",
+    "types-PyYAML>=6.0",
+    "types-tqdm>=4.66",
+    "matplotlib>=3.6",
+    "plotly>=5.0",
+]
+all = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.4",
+    "mypy>=1.8",
+    "pandas-stubs>=2.0",
+    "types-PyYAML>=6.0",
+    "types-tqdm>=4.66",
+    "matplotlib>=3.6",
+    "plotly>=5.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/way-pds/data-processing-algorithms"
+Repository = "https://github.com/way-pds/data-processing-algorithms"
+Documentation = "https://github.com/way-pds/data-processing-algorithms"
+
+[project.scripts]
+dpa-frequency = "dpa.frequency:main"
+dpa-metadata-extractor = "dpa.metadata_extractor:main"
+dpa-metadata-generator = "dpa.metadata_generator:main"
+dpa-quality = "dpa.quality:main"
+dpa-schema = "dpa.schema:main"
+dpa-sensor-count = "dpa.sensor_count:main"
+dpa-sensor-validate = "dpa.sensor_validate:main"
+dpa-pipeline = "dpa.pipeline:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.9"
+strict = true
+ignore_missing_imports = true
+exclude = ["tests/"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
